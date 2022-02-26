@@ -2,10 +2,11 @@
 Ruta:/api/login
 
 */
-const {login, googleSingIn} = require('../controllers/auth.controller');
+const {login, googleSingIn, renewToken} = require('../controllers/auth.controller');
 const {Router} =require('express');
 const { check } = require('express-validator');
 const {validarCampos} =require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-JWT');
 const router = Router();
 
 router.post(
@@ -27,5 +28,10 @@ router.post(
     ],
     googleSingIn
 )
+
+router.get(
+    '/renew',
+    validarJWT,
+    renewToken);
 
 module.exports=router;

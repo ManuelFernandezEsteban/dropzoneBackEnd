@@ -3,6 +3,7 @@ const { response } = require("express");
 
 const fileUpload = (req, res = response) => {
     const id = req.params.id;
+    console.log(req)
     //validar que llega un archivo
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).json({
@@ -23,7 +24,7 @@ const fileUpload = (req, res = response) => {
     console.log(archivosASubir);
     archivosASubir.forEach(archivo => {
 
-        let path = './uploads/usuarios/';
+        let path = `./uploads/usuarios/`;
         let nombreArchivo = id + '-' + archivo.name;
         path = path + nombreArchivo;
         console.log(path);
